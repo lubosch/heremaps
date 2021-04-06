@@ -14,5 +14,5 @@ export interface LatLng {
 export type GeoPoint =
   | LatLng
   | LatLon
-  | Coordinates
+  | GeolocationCoordinates
   | { latitude: number; longitude: number };

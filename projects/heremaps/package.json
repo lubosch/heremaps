@@ -1,12 +1,12 @@
 {
   "name": "@lubosch/heremaps",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "peerDependencies": {
-    "@angular/common": "^9.1.13",
-    "@angular/core": "^9.1.13"
+    "@angular/common": "~11.2.8",
+    "@angular/core": "~11.2.8"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@types/heremaps": "^3.0.12"

@@ -52,7 +52,7 @@ export class HereMapsModule {
      *
      * @param loaderOptions
      */
-    static forRoot(loaderOptions: LoaderOptions): ModuleWithProviders {
+    static forRoot(loaderOptions: LoaderOptions): ModuleWithProviders<HereMapsModule> {
         return {
             ngModule: HereMapsModule,
             providers: [

@@ -53,7 +53,7 @@ export class MapDirectionsDirective extends BaseMapComponent<H.map.Polyline>
 
   /**
    * Origin of directions
-   * @param value can be google.maps.LatLngLiteral or Coordinates  or {latitude: number, longitude: number}
+   * @param value can be google.maps.LatLngLiteral or GeolocationCoordinates  or {latitude: number, longitude: number}
    */
   @Input()
   set origin(value: GeoPoint) {
@@ -68,7 +68,7 @@ export class MapDirectionsDirective extends BaseMapComponent<H.map.Polyline>
 
   /**
    * Destination of directions
-   * @param value can be google.maps.LatLngLiteral or Coordinates  or {latitude: number, longitude: number}
+   * @param value can be google.maps.LatLngLiteral or GeolocationCoordinates  or {latitude: number, longitude: number}
    */
   @Input()
   set destination(value: GeoPoint) {
@@ -83,7 +83,7 @@ export class MapDirectionsDirective extends BaseMapComponent<H.map.Polyline>
 
   /**
    * Destination of directions
-   * @param value can be google.maps.LatLngLiteral or Coordinates  or {latitude: number, longitude: number}
+   * @param value can be google.maps.LatLngLiteral or GeolocationCoordinates  or {latitude: number, longitude: number}
    */
   @Input()
   set intermediatePoints(value: GeoPoint[]) {

@@ -101,7 +101,7 @@ export class HereMapsManager {
       const defaultLayers =
         this._defaultLayers || platform.createDefaultLayers();
       this._defaultLayers = defaultLayers;
-      const map = new H.Map(el, defaultLayers.normal.map, options);
+      const map = new H.Map(el, defaultLayers.vector.normal.map, options);
       const ui = H.ui.UI.createDefault(map, defaultLayers, 'en-US');
       ui.setUnitSystem(H.ui.UnitSystem.IMPERIAL);
 
@@ -156,7 +156,7 @@ export class HereMapsManager {
   // }
 
   public getBrowserLocation(): Promise<
-    Coordinates | { longitude: number; latitude: number }
+    GeolocationCoordinates | { longitude: number; latitude: number }
   > {
     if (this._browserLocationPromise) {
       return this._browserLocationPromise;
@@ -168,7 +168,7 @@ export class HereMapsManager {
     }>(resolve => {
       if (location.protocol === 'https' && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-          (success: { coords: Coordinates; timestamp: number }) => {
+          (success: { coords: GeolocationCoordinates; timestamp: number }) => {
             resolve(success.coords);
           },
           error => {
@@ -192,7 +192,7 @@ export class HereMapsManager {
   }
 
   public calculateMapBounds(
-    points: Array<LatLng | Coordinates | H.map.AbstractMarker> = []
+    points: Array<LatLng | GeolocationCoordinates | H.map.AbstractMarker> = []
   ): Promise<H.geo.Rect> {
     return this.loader.platformReady.then(_ => {
       const bounds = new H.map.Group().getBoundingBox();
@@ -203,12 +203,12 @@ export class HereMapsManager {
           } else {
             bounds.mergePoint({
               lat:
-                (m as Coordinates).latitude !== void 0
-                  ? (m as Coordinates).latitude
+                (m as GeolocationCoordinates).latitude !== void 0
+                  ? (m as GeolocationCoordinates).latitude
                   : (m as LatLng).lat,
               lng:
-                (m as Coordinates).longitude !== void 0
-                  ? (m as Coordinates).longitude
+                (m as GeolocationCoordinates).longitude !== void 0
+                  ? (m as GeolocationCoordinates).longitude
                   : (m as LatLng).lng
             });
           }
@@ -221,10 +221,10 @@ export class HereMapsManager {
 
   private generateWaypointParam(coordinates: GeoPoint, end = false): string {
     const lat =
-      (coordinates as LatLng).lat || (coordinates as Coordinates).latitude || 0;
+      (coordinates as LatLng).lat || (coordinates as GeolocationCoordinates).latitude || 0;
     const lng =
       (coordinates as LatLng).lng ||
-      (coordinates as Coordinates).longitude ||
+      (coordinates as GeolocationCoordinates).longitude ||
       (coordinates as LatLon).lon ||
       0;
     return `geo!${end ? 'stopOver' : 'passThrough'}!${lat},${lng}`;
