@@ -1,6 +1,6 @@
 {
-  "name": "heremaps",
-  "version": "0.0.1",
+  "name": "@lubosch/heremaps",
+  "version": "0.1.0",
   "peerDependencies": {
     "@angular/common": "^9.1.13",
     "@angular/core": "^9.1.13"
